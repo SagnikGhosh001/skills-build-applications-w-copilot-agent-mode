@@ -6,8 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const dotenv_1 = __importDefault(require("dotenv"));
-const mongoose_1 = __importDefault(require("mongoose"));
 const config_1 = require("./config");
+const database_1 = require("./database");
 const user_1 = require("./models/user");
 const team_1 = require("./models/team");
 const activity_1 = require("./models/activity");
@@ -16,14 +16,11 @@ const workout_1 = require("./models/workout");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = (0, config_1.getPort)();
-const mongoUri = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/octofit_db";
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
-async function connectToDatabase() {
-    await mongoose_1.default.connect(mongoUri);
+(0, database_1.connectToDatabase)().then(() => {
     console.log("Connected to MongoDB");
-}
-connectToDatabase().catch((error) => {
+}).catch((error) => {
     console.error("MongoDB connection error", error);
 });
 app.get("/api/health", (_req, res) => {

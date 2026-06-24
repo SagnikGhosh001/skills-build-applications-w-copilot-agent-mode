@@ -40,4 +40,4 @@ const teamSchema = new mongoose_1.Schema({
     sport: { type: String, required: true },
     members: [{ type: String, required: true }],
 });
-exports.Team = mongoose_1.default.model('Team', teamSchema);
+exports.Team = mongoose_1.default.model("Team", teamSchema);

@@ -41,4 +41,4 @@ const workoutSchema = new mongoose_1.Schema({
     durationMinutes: { type: Number, required: true },
     focus: { type: String, required: true },
 });
-exports.Workout = mongoose_1.default.model('Workout', workoutSchema);
+exports.Workout = mongoose_1.default.model("Workout", workoutSchema);

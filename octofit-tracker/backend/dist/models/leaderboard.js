@@ -40,4 +40,4 @@ const leaderboardSchema = new mongoose_1.Schema({
     points: { type: Number, required: true },
     rank: { type: Number, required: true },
 });
-exports.Leaderboard = mongoose_1.default.model('Leaderboard', leaderboardSchema);
+exports.Leaderboard = mongoose_1.default.model("Leaderboard", leaderboardSchema);

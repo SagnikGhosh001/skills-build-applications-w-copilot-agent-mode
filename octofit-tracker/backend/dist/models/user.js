@@ -41,4 +41,4 @@ const userSchema = new mongoose_1.Schema({
     role: { type: String, required: true },
     fitnessGoal: { type: String, required: true },
 });
-exports.User = mongoose_1.default.model('User', userSchema);
+exports.User = mongoose_1.default.model("User", userSchema);

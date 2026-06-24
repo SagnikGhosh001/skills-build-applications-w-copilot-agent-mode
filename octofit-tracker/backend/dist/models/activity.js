@@ -41,4 +41,4 @@ const activitySchema = new mongoose_1.Schema({
     userName: { type: String, required: true },
     date: { type: String, required: true },
 });
-exports.Activity = mongoose_1.default.model('Activity', activitySchema);
+exports.Activity = mongoose_1.default.model("Activity", activitySchema);

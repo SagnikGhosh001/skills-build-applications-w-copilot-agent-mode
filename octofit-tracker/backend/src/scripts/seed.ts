@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import { connectToDatabase, disconnectFromDatabase } from "../database";
 import { User } from "../models/user";
 import { Team } from "../models/team";
 import { Activity } from "../models/activity";
@@ -7,10 +7,7 @@ import { Workout } from "../models/workout";
 
 // Seed the octofit_db database with test data
 async function seedDatabase() {
-    const mongoUri = process.env.MONGODB_URI ||
-        "mongodb://127.0.0.1:27017/octofit_db";
-
-    await mongoose.connect(mongoUri);
+    await connectToDatabase();
     console.log("Connected to MongoDB");
 
     await Promise.all([
@@ -104,7 +101,7 @@ async function seedDatabase() {
     ]);
 
     console.log("Seeded octofit_db with sample data");
-    await mongoose.disconnect();
+    await disconnectFromDatabase();
 }
 
 seedDatabase().catch((error) => {

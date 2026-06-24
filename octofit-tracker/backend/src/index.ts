@@ -1,8 +1,8 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import mongoose from "mongoose";
 import { getApiBaseUrl, getPort } from "./config";
+import { connectToDatabase } from "./database";
 import { User } from "./models/user";
 import { Team } from "./models/team";
 import { Activity } from "./models/activity";
@@ -13,18 +13,13 @@ dotenv.config();
 
 const app = express();
 const port = getPort();
-const mongoUri = process.env.MONGODB_URI ||
-    "mongodb://127.0.0.1:27017/octofit_db";
 
 app.use(cors());
 app.use(express.json());
 
-async function connectToDatabase() {
-    await mongoose.connect(mongoUri);
+connectToDatabase().then(() => {
     console.log("Connected to MongoDB");
-}
-
-connectToDatabase().catch((error) => {
+}).catch((error) => {
     console.error("MongoDB connection error", error);
 });
 
